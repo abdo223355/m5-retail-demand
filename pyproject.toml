@@ -1,0 +1,7 @@
+# Tool configuration only (the repository is run from its root, not installed as a package).
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = [
+    "ignore:The default of observed=False:FutureWarning",
+]

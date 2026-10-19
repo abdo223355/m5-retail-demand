@@ -1,0 +1,31 @@
+# Documents the feature settings implemented in src/features/ (the code holds the same
+# defaults; this file is the human-readable reference).
+lags: [1, 7, 14, 28]
+rolling_windows: [7, 14, 28]       # rolling mean and std of sales.shift(1)
+rolling_stats: [mean, std]
+calendar_engineered: [is_weekend]  # wday >= 6 (see docs/feature_engineering.md - known issue)
+price_features:
+  - price_lag_1
+  - price_diff_1
+  - price_pct_change
+  - price_max
+  - price_relative_to_max
+drop_rows_with_nan_in:
+  - lag_28
+  - rolling_mean_28
+  - rolling_std_28
+  - price_lag_1
+  - price_pct_change
+  - price_relative_to_max
+categorical_cols:
+  - item_id
+  - dept_id
+  - cat_id
+  - store_id
+  - state_id
+  - weekday
+  - event_name_1
+  - event_type_1
+  - event_name_2
+  - event_type_2
+low_importance_cols: [state_id, event_name_2, event_type_2]

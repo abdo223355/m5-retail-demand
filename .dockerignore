@@ -1,0 +1,15 @@
+.git
+.gitignore
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+data/
+notebooks/
+reports/
+docs/
+_cut_deep_learning/
+models/
+*.md

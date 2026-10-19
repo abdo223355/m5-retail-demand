@@ -1,0 +1,43 @@
+# ---- Data (never published; see data/README.md) ----
+data/*
+!data/README.md
+*.csv
+*.parquet
+*.feather
+*.zip
+
+# ---- Model binaries and cached arrays ----
+/models/
+*.pkl
+*.pickle
+*.joblib
+*.h5
+*.npy
+*.npz
+
+# Allow deployment artifacts (< 4MB) to be tracked for Streamlit Cloud / GitHub
+!artifacts/
+!artifacts/*.pkl
+
+# ---- Logs, secrets, environments, caches ----
+/logs/
+*.log
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+
+# ---- Local-only material ----
+_cut_deep_learning/
+.agents/
+.codex/
+
+# ---- Small result tables ARE tracked ----
+!reports/tables/*.csv
