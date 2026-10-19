@@ -107,9 +107,15 @@ def test_non_negative_demand_guarantee(valid_payload):
 
     # Mock raw prediction to simulate negative tree output
     original_predict = predictor.model.predict
+    booster = getattr(predictor.model, "booster_", None)
+    original_booster_predict = booster.predict if booster is not None else None
     try:
         predictor.model.predict = lambda df: [-5.4321]
+        if booster is not None:
+            booster.predict = lambda df: [-5.4321]
         clipped_result = predictor.predict(valid_payload)
         assert clipped_result == 0.0
     finally:
         predictor.model.predict = original_predict
+        if booster is not None and original_booster_predict is not None:
+            booster.predict = original_booster_predict

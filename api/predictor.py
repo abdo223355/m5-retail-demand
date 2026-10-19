@@ -154,7 +154,13 @@ class Predictor:
         df = self.prepare_features(data_dict)
 
         try:
-            raw_prediction = self.model.predict(df)
+            # Use native LightGBM booster directly to bypass scikit-learn cross-version pickle issues ('get_params')
+            booster = getattr(self.model, "booster_", None)
+            if booster is not None and hasattr(booster, "predict"):
+                raw_prediction = booster.predict(df)
+            else:
+                raw_prediction = self.model.predict(df)
+
             val = float(raw_prediction[0])
 
             # Demand cannot be negative: clip to 0
